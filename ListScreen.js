@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Animated, Dimensions, PanResponder } from 'react-native';
 import items from './data.js'
 import { SwipeListView } from 'react-native-swipe-list-view';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class ListScreen extends React.Component {
   constructor(props) {
@@ -17,6 +18,12 @@ export default class ListScreen extends React.Component {
     console.log(this.state.data)
   }
 
+  static navigationOptions = {
+    //header: null,
+    title: 'List',
+    tabBarVisible: true,
+    tabBarIcon: <Ionicons name="md-list" size={32} color="#666" />
+  }
 
   render() {
     return (
@@ -79,6 +86,5 @@ const styles = StyleSheet.create({
 	backRightBtnRight: {
 		backgroundColor: 'red',
 		right: 0,
-    color: '#fff'
 	},
 });
