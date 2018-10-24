@@ -48,8 +48,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FFF',
 		borderBottomColor: 'black',
 		borderBottomWidth: 1,
-    textAlign: 'center',
-    color: '#000',
     padding: 10,
     paddingTop: 15,
     paddingBottom: 15
