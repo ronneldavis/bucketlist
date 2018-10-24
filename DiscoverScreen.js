@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
-import { Dimensions, AsyncStorage } from "react-native";
+import { Dimensions, AsyncStorage, Platform } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
 var width = Dimensions.get("window").width;
@@ -90,7 +90,7 @@ export default class DiscoverScreen extends React.Component {
     console.log("NOPE");
     console.log(card.text);
   }
-  
+
   handleMaybe = (card) => {
     console.log("MAYBE");
     console.log(card.text);
@@ -132,11 +132,11 @@ export default class DiscoverScreen extends React.Component {
 const styles = StyleSheet.create({
     header: {
         fontWeight: "900",
-        fontFamily: "Avenir",
+        fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
         fontSize: 44,
         marginLeft: 20,
         marginTop: 44
-    },  
+    },
     container: {
         flex: 1,
         backgroundColor: "#eee",
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   cardInner: {
       textAlign: "center",
       fontSize: 22,
-      fontFamily: 'Avenir'
+      fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
   },
   noMoreCardsText: {
     fontSize: 22,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   buttonInner: {
       textAlign: "center",
-      fontFamily: "Avenir",
+      fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
       fontSize: 18,
       fontWeight: "700",
       color: "#fff"

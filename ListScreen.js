@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Animated, Dimensions, PanResponder } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, AsyncStorage, Platform } from 'react-native';
 import items from './data.js'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,14 +8,26 @@ export default class ListScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      enable: true,
-      data: items.map(a => {
-        return {"text": a}
-      }),
-      listViewData: items.map((_,i) => ({key: `${i}`, text: `item #${i}`})),
+      data: [],
     };
 
     console.log(this.state.data)
+  }
+
+  componentDidMount() {
+    this.getArray();
+  }
+
+  getArray = () => {
+    AsyncStorage.getItem('data').then(req => JSON.parse(req)).then(json => {
+        console.log("Found");
+        console.log(json || []);
+        this.setState({data: json || []});
+    }).catch(e => {
+        console.log("Not found");
+        this.setState({data: []});
+        this.setArray();
+    })
   }
 
   static navigationOptions = {
@@ -32,7 +44,7 @@ export default class ListScreen extends React.Component {
             data={this.state.data}
             renderItem={({item}) => (
                 <View style={styles.rowFront}>
-                    <Text style={styles.text}>{item.text}</Text>
+                    <Text style={styles.text}>{item.title}</Text>
                 </View>
             )}
             renderHiddenItem={ (data, rowMap) => (
