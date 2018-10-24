@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
 import { Dimensions, AsyncStorage } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 var width = Dimensions.get("window").width;
 var height = Dimensions.get("window").height;
@@ -46,6 +47,13 @@ export default class DiscoverScreen extends React.Component {
         return {"text": a}
       })
     };
+  }
+
+  static navigationOptions = {
+    //header: null,
+    title: 'Discover',
+    tabBarVisible: true,
+    tabBarIcon: <Ionicons name="md-compass" size={32} color="#666" />
   }
 
 

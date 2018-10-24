@@ -5,4 +5,8 @@ import ListScreen from './ListScreen.js';
 export default createBottomTabNavigator({
   Discover: DiscoverScreen,
   List: ListScreen,
+}, {
+  tabBarOptions: {
+    showLabel: false
+  }
 });
