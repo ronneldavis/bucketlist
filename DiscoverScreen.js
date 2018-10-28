@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
-import { Dimensions, AsyncStorage } from "react-native";
+import { Dimensions, AsyncStorage, Platform } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import ImageLoad from 'react-native-image-placeholder';
 
