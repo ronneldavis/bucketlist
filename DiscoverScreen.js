@@ -2,7 +2,11 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
+<<<<<<< HEAD
 import { Dimensions, AsyncStorage, Image } from "react-native";
+=======
+import { Dimensions, AsyncStorage, Platform } from "react-native";
+>>>>>>> dd0e4bbb9afe84696935aeb15e2899e462795e72
 import { Ionicons } from '@expo/vector-icons';
 import ImageLoad from 'react-native-image-placeholder';
 
@@ -97,7 +101,7 @@ export default class DiscoverScreen extends React.Component {
 
   handleNope = (card) => {
   }
-  
+
   handleMaybe = (card) => {
     var a = this.state.arr;
     a.push({title: card.text, completed: true});
@@ -140,11 +144,11 @@ export default class DiscoverScreen extends React.Component {
 const styles = StyleSheet.create({
     header: {
         fontWeight: "900",
-        fontFamily: "Avenir",
+        fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
         fontSize: 44,
         marginLeft: 20,
         marginTop: 44
-    },  
+    },
     container: {
         flex: 1,
         backgroundColor: "#eee",
@@ -195,7 +199,7 @@ const styles = StyleSheet.create({
   },
   buttonInner: {
       textAlign: "center",
-      fontFamily: "Avenir",
+      fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
       fontSize: 18,
       fontWeight: "700",
       color: "#fff"
