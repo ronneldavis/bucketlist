@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Animated, Dimensions, PanResponder } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import items from './data.js'
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Ionicons } from '@expo/vector-icons';
+
+var width = Dimensions.get("window").width;
+var height = Dimensions.get("window").height;
 
 export default class ListScreen extends React.Component {
   constructor(props) {
@@ -14,8 +17,6 @@ export default class ListScreen extends React.Component {
       }),
       listViewData: items.map((_,i) => ({key: `${i}`, text: `item #${i}`})),
     };
-
-    console.log(this.state.data)
   }
 
   static navigationOptions = {
@@ -25,10 +26,19 @@ export default class ListScreen extends React.Component {
     tabBarIcon: <Ionicons name="md-list" size={32} color="#666" />
   }
 
+  swipeBegan = (a, b, c) => {
+    console.log(a, b, c);
+  }
+
   render() {
     return (
+      <View style={styles.wrapper}>
+      <Text style={styles.header}>My List</Text>
       <SwipeListView
-            useFlatList
+          onRowOpen={this.swipeBegan}
+          style={styles.scroller}
+          keyExtractor={(item, index) => index.toString()}
+            useFlatList={true}
             data={this.state.data}
             renderItem={({item}) => (
                 <View style={styles.rowFront}>
@@ -38,30 +48,53 @@ export default class ListScreen extends React.Component {
             renderHiddenItem={ (data, rowMap) => (
                 <View style={styles.rowBack}>
                   <Text style={styles.whiteText}>Completed</Text>
-                  <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]}>
-                    <Text style={styles.backTextWhite}>Remove</Text>
-                  </TouchableOpacity>
+                  <View style={[styles.backRightBtn, styles.backRightBtnRight]}>
+                    <Text style={styles.whiteText}>Remove</Text>
+                  </View>
                 </View>
             )}
             leftOpenValue={100}
             rightOpenValue={-100}
         />
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  header: {
+    fontWeight: "900",
+    fontFamily: "Avenir",
+    fontSize: 44,
+    marginLeft: 20,
+    marginBottom: 10,
+    marginTop: 44
+  }, 
+  wrapper: {
+    backgroundColor: "#eee",
+    flex: 1
+  },
+  scroller: {
+    backgroundColor: "#eee"
+  },
   rowFront: {
 		backgroundColor: '#FFF',
-		borderBottomColor: 'black',
-		borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    borderRadius: 5,
+    width: width - 40,
+    marginLeft: 20,
+    marginTop: 10,
     padding: 10,
     paddingTop: 15,
     paddingBottom: 15
 	},
 	rowBack: {
+    borderRadius: 5,
+    width: width - 40,
+    marginLeft: 20,
+    marginTop: 10,
 		alignItems: 'center',
-		backgroundColor: 'green',
+		backgroundColor: '#2ecc71',
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -81,10 +114,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		position: 'absolute',
 		top: 0,
-		width: 100
+    width: (width/2) - 20,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5
 	},
 	backRightBtnRight: {
-		backgroundColor: 'red',
+		backgroundColor: '#e74c3c',
 		right: 0,
 	},
 });

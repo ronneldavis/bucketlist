@@ -2,23 +2,35 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
-import { Dimensions, AsyncStorage } from "react-native";
+import { Dimensions, AsyncStorage, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import ImageLoad from 'react-native-image-placeholder';
 
 var width = Dimensions.get("window").width;
 var height = Dimensions.get("window").height;
 
 class Card extends React.Component {
+
   constructor(props) {
     super(props);
   }
 
   render() {
-    return (
-      <View style={styles.card}>
-        <Text style={styles.cardInner}>{this.props.text}</Text>
-      </View>
-    )
+    if(this.props.image == ""){
+      return (
+        <View style={[styles.card, {height: 300}]}>
+          <Text style={styles.cardText}>{this.props.title}</Text>
+        </View>
+      )}
+      else{
+        return (
+        <View style={styles.card}>
+          <View style={{borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden"}}>
+            <ImageLoad source={{uri: `https://source.unsplash.com/${this.props.image}/640x640`}} style={styles.cardImage}></ImageLoad>
+          </View>
+          <Text style={styles.cardText}>{this.props.title}</Text>
+        </View>
+      )}
   }
 }
 
@@ -43,8 +55,10 @@ export default class DiscoverScreen extends React.Component {
     super(props);
     this.state = {
      arr: [],
-      cards: items.map(a => {
-        return {"text": a}
+      cards: items.map((a, i) => {
+        var obj = a;
+        obj.key = i.toString();
+        return obj;
       })
     };
   }
@@ -63,11 +77,8 @@ export default class DiscoverScreen extends React.Component {
 
   getArray = () => {
     AsyncStorage.getItem('data').then(req => JSON.parse(req)).then(json => {
-        console.log("Found");
-        console.log(json || []);
         this.setState({arr: json || []});
     }).catch(e => {
-        console.log("Not found");
         this.setState({arr: []});
         this.setArray();
     })
@@ -78,8 +89,6 @@ export default class DiscoverScreen extends React.Component {
   }
 
   handleYup = (card) => {
-    console.log("YUP");
-    console.log(card.text);
     var a = this.state.arr;
     a.push({title: card.text, completed: false});
     this.setState({arr: a});
@@ -87,13 +96,9 @@ export default class DiscoverScreen extends React.Component {
   }
 
   handleNope = (card) => {
-    console.log("NOPE");
-    console.log(card.text);
   }
   
   handleMaybe = (card) => {
-    console.log("MAYBE");
-    console.log(card.text);
     var a = this.state.arr;
     a.push({title: card.text, completed: true});
     this.setState({arr: a});
@@ -105,8 +110,11 @@ export default class DiscoverScreen extends React.Component {
         <View style={styles.container}>
         <Text style={styles.header}>Discover</Text>
       <SwipeCards
+        stack={true}
         cards={this.state.cards}
-        renderCard={(cardData) => <Card {...cardData} />}
+        renderCard={(cardData) => {
+          return <Card {...cardData} />
+        }}
         renderNoMoreCards={() => <NoMoreCards />}
 
         maybeText="Completed!"
@@ -143,12 +151,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
   card: {
+    marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
     width: 300,
-    height: 300,
-    padding: 20,
-    marginBottom: 100,
+    marginBottom: 50,
     elevation: 3,
     borderRadius: 15,
     backgroundColor: "#fff",
@@ -158,10 +165,17 @@ const styles = StyleSheet.create({
     shadowRadius: 16,
     shadowOffset: {width: 0, height: 8}
   },
-  cardInner: {
-      textAlign: "center",
-      fontSize: 22,
-      fontFamily: 'Avenir'
+  cardImage: {
+    width: 300,
+    height: 300
+  },
+  cardText: {
+    padding: 20,
+    textAlign: "center",
+    fontSize: 20,
+    color: "#444",
+    fontWeight: "800",
+    fontFamily: 'Avenir'
   },
   noMoreCardsText: {
     fontSize: 22,
