@@ -1,10 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
-=======
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions, AsyncStorage, Platform } from 'react-native';
->>>>>>> dd0e4bbb9afe84696935aeb15e2899e462795e72
-import items from './data.js'
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Ionicons } from '@expo/vector-icons';
 
