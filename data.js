@@ -230,9 +230,7 @@ export default items = [
 { "title": "Watch migration on the Serengeti", "image": "3BbEYiIV7bo"},
 { "title": "Land a backflip", "image": "qJXIYTIO5BM"},
 { "title": "Yell \"Are you not entertained\" at the Colosseum", "image": "cjBLfrjE-XU"},
-
-{ "title": "Watch the whiling dervishes in Istanbul", "image": ""},
-{ "title": "Water ski", "image": ""},
-{ "title": "Write a book", "image": ""},
-{ "title": "Write a children's book", "image": ""},
+{ "title": "Water ski", "image": "ynRImHi8LnY"},
+{ "title": "Write a book", "image": "faUzKz3TvpM"},
+{ "title": "Write a children's book", "image": "EQlTyDZRx7U"},
 ];

@@ -49,13 +49,21 @@ class NoMoreCards extends React.Component {
 }
 
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export default class DiscoverScreen extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
      arr: [],
-      cards: items.slice(231, items.length).map((a, i) => {
+      cards: shuffle(items).map((a, i) => {
         var obj = a;
         obj.key = i.toString();
         return obj;
