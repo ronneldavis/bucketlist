@@ -55,7 +55,7 @@ export default class DiscoverScreen extends React.Component {
     super(props);
     this.state = {
      arr: [],
-      cards: items.slice(224, items.length).map((a, i) => {
+      cards: items.slice(231, items.length).map((a, i) => {
         var obj = a;
         obj.key = i.toString();
         return obj;

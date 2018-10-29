@@ -46,7 +46,6 @@ export default class ListScreen extends React.Component {
       <View style={styles.wrapper}>
       <Text style={styles.header}>My List</Text>
       <SwipeListView
-          onRowOpen={this.swipeBegan}
           style={styles.scroller}
           keyExtractor={(item, index) => index.toString()}
             useFlatList={true}
