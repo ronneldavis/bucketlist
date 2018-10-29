@@ -18,7 +18,7 @@ class Card extends React.Component {
   render() {
     if(this.props.image == ""){
       return (
-        <View style={[styles.card, {height: 300}]}>
+        <View style={[styles.card, {height: width - 60}]}>
           <Text style={styles.cardText}>{this.props.title}</Text>
         </View>
       )}
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 300,
+    width: width - 60,
     marginBottom: 50,
     elevation: 3,
     borderRadius: 15,
@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 8}
   },
   cardImage: {
-    width: 300,
-    height: 300,
+    width: width - 60,
+    height: width - 60,
     flex: 0
   },
   cardText: {
