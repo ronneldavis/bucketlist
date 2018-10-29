@@ -118,6 +118,9 @@ export default class DiscoverScreen extends React.Component {
         <View style={styles.container}>
         <Text style={styles.header}>Discover</Text>
       <SwipeCards
+        loop={true}
+        stackOffsetX={0}
+        stackOffsetY={-10}
         stack={true}
         cards={this.state.cards}
         renderCard={(cardData) => {
@@ -150,7 +153,7 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
         fontSize: 44,
-        marginLeft: 20,
+        marginLeft: 30,
         marginTop: 44
     },
     container: {
@@ -159,12 +162,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
   card: {
-    marginTop: 20,
+    marginTop: 50,
+    marginLeft: 30,
     justifyContent: 'center',
     alignItems: 'center',
     width: width - 60,
     marginBottom: 50,
-    elevation: 3,
     borderRadius: 15,
     backgroundColor: "#fff",
     elevation: 3,
@@ -192,13 +195,18 @@ const styles = StyleSheet.create({
 
   button: {
       borderRadius: 10,
-      width: width - 40,
-      left: 20,
+      width: width - 60,
+      left: 30,
+      height: 54,
+      padding: 0,
       backgroundColor: "#fff",
       borderColor: "transparent",
       elevation: 3,
       shadowColor: "#000000",
       shadowOpacity: 0.2,
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
       shadowRadius: 16,
       shadowOffset: {width: 0, height: 8}
   },

@@ -94,9 +94,15 @@ const styles = StyleSheet.create({
     width: width - 40,
     marginLeft: 20,
     marginTop: 10,
-    padding: 10,
+    padding: 20,
     paddingTop: 15,
-    paddingBottom: 15
+    paddingBottom: 15,
+
+    elevation: 3,
+    shadowColor: "#000000",
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    shadowOffset: {width: 0, height: 8}
 	},
 	rowBack: {
     borderRadius: 5,
@@ -115,8 +121,10 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   text: {
-    color: '#000',
-    fontSize: 22,
+    color: "#444",
+    fontWeight: "800",
+    fontSize: 20,
+    fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
   },
 	backRightBtn: {
 		alignItems: 'center',

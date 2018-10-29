@@ -88,7 +88,7 @@ export default items = [
 { "title": "Be on a game show", "image": "k1yewM49G4Q"},
 { "title": "Go treasure hunting", "image": "RFId0_7kep4"},
 { "title": "Land a flip on a wakeboard", "image": "WUeynNihHuQ"},
-{ "title": "Surf the waves in Hawaii", "image": "_CFv3bntQlQ"},
+{ "title": "Surf the waves in Hawaii", "image": "5__FobjBei8"},
 { "title": "Enter a professional Ping-Pong tournament", "image": "zHuJFUYz3Dk"},
 { "title": "Give my daughter away at her wedding to a man who deserves her", "image": "R_OaxbsmDeA"},
 { "title": "Watch the sunset on a beach on my honeymoon", "image": "lT7zmkth3o8"},
