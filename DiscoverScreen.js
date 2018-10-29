@@ -4,7 +4,7 @@ import SwipeCards from 'react-native-swipe-cards'
 import items from './data.js'
 import { Dimensions, AsyncStorage, Platform } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
-import ImageLoad from 'react-native-image-placeholder';
+import ImagePlaceholder from 'react-native-image-with-placeholder'
 
 var width = Dimensions.get("window").width;
 var height = Dimensions.get("window").height;
@@ -26,7 +26,7 @@ class Card extends React.Component {
         return (
         <View style={styles.card}>
           <View style={{borderTopLeftRadius: 15, borderTopRightRadius: 15, overflow: "hidden"}}>
-            <ImageLoad source={{uri: `https://source.unsplash.com/${this.props.image}/640x640`}} style={styles.cardImage}></ImageLoad>
+            <ImagePlaceholder showActivityIndicator={false} src={`https://source.unsplash.com/${this.props.image}/640`} style={styles.cardImage}></ImagePlaceholder>
           </View>
           <Text style={styles.cardText}>{this.props.title}</Text>
         </View>
@@ -55,7 +55,7 @@ export default class DiscoverScreen extends React.Component {
     super(props);
     this.state = {
      arr: [],
-      cards: items.slice(50, items.length).map((a, i) => {
+      cards: items.slice(211, items.length).map((a, i) => {
         var obj = a;
         obj.key = i.toString();
         return obj;
@@ -90,7 +90,7 @@ export default class DiscoverScreen extends React.Component {
 
   handleYup = (card) => {
     var a = this.state.arr;
-    a.push({title: card.text, completed: false});
+    a.push({title: card.title, completed: false});
     this.setState({arr: a});
     this.setArray();
   }
@@ -100,7 +100,7 @@ export default class DiscoverScreen extends React.Component {
 
   handleMaybe = (card) => {
     var a = this.state.arr;
-    a.push({title: card.text, completed: true});
+    a.push({title: card.title, completed: true});
     this.setState({arr: a});
     this.setArray();
   }
@@ -167,7 +167,8 @@ const styles = StyleSheet.create({
   },
   cardImage: {
     width: 300,
-    height: 300
+    height: 300,
+    flex: 0
   },
   cardText: {
     padding: 20,
