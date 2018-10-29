@@ -140,7 +140,7 @@ export default class DiscoverScreen extends React.Component {
 const styles = StyleSheet.create({
     header: {
         fontWeight: "900",
-        fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
+        fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
         fontSize: 44,
         marginLeft: 20,
         marginTop: 44
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#444",
     fontWeight: "800",
-    fontFamily: 'Avenir'
+    fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
   },
   noMoreCardsText: {
     fontSize: 22,
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
   buttonInner: {
       textAlign: "center",
-      fontFamily: Platform.OS === 'ios' ? "Avenir" : "Open Sans",
+      fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
       fontSize: 18,
       fontWeight: "700",
       color: "#fff"

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, AsyncStorage, Platform } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -75,12 +75,12 @@ export default class ListScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     fontWeight: "900",
-    fontFamily: "Avenir",
+    fontFamily: Platform.OS === 'ios' ? "Avenir" : "Roboto",
     fontSize: 44,
     marginLeft: 20,
     marginBottom: 10,
     marginTop: 44
-  }, 
+  },
   wrapper: {
     backgroundColor: "#eee",
     flex: 1
